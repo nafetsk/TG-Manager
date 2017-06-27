@@ -38,50 +38,31 @@ body {
 	padding: 5px;
 	display: inline-block;
 	text-decoration: none;
-	color: white;
+	color: rgb(100, 112, 132);
+}
+
+.nav-main__text:hover{
+	color: rgba(29, 166, 255, 0.76);
+	transition: 150ms;
+
+
 }
 .navbar__element{
 	display:flex;
 	align-items: : center;
 }
-
-.Name_Einstellungen_Übersicht{
-	display: flex;
-	justify-content: center;
-	margin-left: auto;
-	margin-right: auto;
-
+.tg_manager{
+ line-height: 80px;
 }
-.TG_Manager{
-
-}
-.Logo{
+.logo{
 	float: left;
 	height: 80px;
 	width: 80px;
 }
-.Name{
+.name{
 	font-size: 25px;
 }
-.Einstellungen{
-	text-decoration: none;
-	color: white;
-	padding-right: 50px;
-}
-.Einstellungen:hover{
-	color: #2196F3;
-	transition:150ms;
-}
 
-.Übersicht{
-	text-decoration: none;
-	color: white;
-	padding-left: 50px;
-	transition: 150ms;
-}
-.Übersicht:hover{
-	color: #2196F3
-}
 .hauptseite{
 	background-color: rgba(0,0,0,0.5);
 	max-width: 90%;
@@ -94,6 +75,7 @@ body {
 }
 h1{
 	text-align: center;
+	color:white;
 }
 
 
@@ -118,11 +100,11 @@ h1{
     background: rgba(29, 166, 255, 0.76);
     color: white;
 }
-.Klammotten{
-	padding-right: 50px;
-}
+
 
 .Spalten{
 	display: flex;
 	justify-content: space-around;
+	font-size: 20px;
+	color: white;
 }
