@@ -1,6 +1,8 @@
 body{
 	margin:0;
+	padding:0;
 	font-family: Roboto, sans-serif;
+	background-image: url(images/money.jpg);
 }
 
 .navbar{
@@ -10,6 +12,8 @@ body{
 	display: flex;
 	font-size: 20px;
 	color: white;
+	position: fixed;
+	top: 0;
 
 
 	
@@ -34,6 +38,10 @@ body{
 	text-decoration: none;
 	color: white;
 	padding-right: 20px;
+	vertical-align: middle;
+}
+.Einstellungen:hover{
+	color: #2196F3
 }
 
 .Übersicht{
@@ -41,7 +49,50 @@ body{
 	color: white;
 	padding-left: 20px;
 }
+.Übersicht:hover{
+	color: #2196F3
+}
 .hauptseite{
 	background-color: rgba(0,0,0,0.5);
-	max-width: 90vh;
+	max-width: 90%;
+	height: 1000px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 150px;
+	border-radius: 10px;
+
+}
+h1{
+	text-align: center;
+}
+
+
+
+.button-container{
+	text-align: center;
+	margin-top: 350px;
+
+}
+.button {
+    background: transparent;
+    border: solid 2px #2196F3;
+    font-size: 25px;
+    border-radius: 5px;
+    color: #2196F3;
+    padding: 10px 30px;
+    transition: 150ms;
+    margin: auto;
+    text-decoration: none;
+    }
+ .button:hover {
+    background: rgba(29, 166, 255, 0.76);
+    color: white;
+}
+.Klammotten{
+	padding-right: 50px;
+}
+
+.Spalten{
+	display: flex;
+	justify-content: space-around;
 }
