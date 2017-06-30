@@ -71,6 +71,7 @@ body {
 	margin-left: auto;
 	margin-top: 150px;
 	border-radius: 10px;
+	color: white;
 
 }
 h1{
@@ -109,8 +110,22 @@ h1{
 }
 .Spalten_index{
 	display: flex;
-	justify-content: space-around;
+	padding: 0 20px;
 	font-size: 20px;
 	color: white;
+	flex-basis: 25%;
+}
+
+.Spalten_index h2 {
+	flex-basis: 25%;
+	text-align: center;
+}
+.datensätze{
+	padding: 0 20px;
+	text-align: center;
+	display: flex;
+}
+.datensätze > div {
+	flex-basis: 25%;
 }
 

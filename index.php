@@ -36,25 +36,79 @@
         <h2 class="Klamotten">Klamotten</h2> <h2 class="Taschengeld">Taschengeld</h2>
         <h2 class="Frisör">Frisoer</h2> <h2 class ="Spargeld">Spargeld</h2>
     </div>
-    <div class="button-container">
-        <a class="button" href="nachtrag_formular_php.php">Nachtrag</a>
-    </div>
-
+    <div class="datensätze">
+    <div class="klamotten_datenbank">
 <?php
-
+//Verbindung zur Datenbank
 $mysqli = new mysqli("localhost", "root", "stefan", "tg_manager");
 if ($mysqli->connect_error) {
     echo "Fehler bei Verbindung:" . mysqli_connect_error();
     exit();
 }
-
-$ergebnis = $mysqli->query("Select datum, preis, grund FROM tg_manager;");
+//Abrufen der Datensätze
+$ergebnis = $mysqli->query("Select datum, preis, grund FROM Klamotten;");
 while ($zeile = $ergebnis->fetch_array()) {
-    echo "<strong>{$zeile['datum']}</strong>: {$zeile['preis']} {$zeile['grund']}
+    echo "<strong>{$zeile['preis']}</strong>: {$zeile['grund']} {$zeile['datum']}
 	<br>";
 }
 ?>
+</div>
 
+    <div class="taschengeld_datenbank">
+        <?php
+        //Verbindung zur Datenbank
+        $mysqli = new mysqli("localhost", "root", "stefan", "tg_manager");
+        if ($mysqli->connect_error) {
+            echo "Fehler bei Verbindung:" . mysqli_connect_error();
+            exit();
+        }
+        //Abrufen der Datensätze
+        $ergebnis = $mysqli->query("Select datum, preis, grund FROM Taschengeld;");
+        while ($zeile = $ergebnis->fetch_array()) {
+            echo "<strong>{$zeile['preis']}</strong>: {$zeile['grund']} {$zeile['Datum']}
+	<br>";
+        }
+        ?>
+    </div>
+
+    <div class="frisoer_datebank_datenbank">
+        <?php
+        //Verbindung zur Datenbank
+        $mysqli = new mysqli("localhost", "root", "stefan", "tg_manager");
+        if ($mysqli->connect_error) {
+            echo "Fehler bei Verbindung:" . mysqli_connect_error();
+            exit();
+        }
+        //Abrufen der Datensätze
+        $ergebnis = $mysqli->query("Select datum, preis, grund FROM Frisoer;");
+        while ($zeile = $ergebnis->fetch_array()) {
+            echo "<strong>{$zeile['preis']}</strong>: {$zeile['grund']} {$zeile['datum']}
+	<br>";
+        }
+        ?>
+    </div>
+
+    <div class="spargeld_datenbank">
+        <?php
+        //Verbindung zur Datenbank
+        $mysqli = new mysqli("localhost", "root", "stefan", "tg_manager");
+        if ($mysqli->connect_error) {
+            echo "Fehler bei Verbindung:" . mysqli_connect_error();
+            exit();
+        }
+        //Abrufen der Datensätze
+        $ergebnis = $mysqli->query("Select datum, preis, grund FROM Spargeld;");
+        while ($zeile = $ergebnis->fetch_array()) {
+            echo "<strong>{$zeile['preis']}</strong>: {$zeile['grund']} {$zeile['datum']}
+	<br>";
+        }
+        ?>
+    </div>
+    </div>
+
+    <div class="button-container">
+        <a class="button" href="nachtrag_formular_php.php">Nachtrag</a>
+    </div>
     </div>
 
 </div>
