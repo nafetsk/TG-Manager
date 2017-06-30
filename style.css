@@ -108,3 +108,7 @@ h1{
 	font-size: 20px;
 	color: white;
 }
+.nachtrag_formular{
+	display: flex;
+	justify-content: space-around;
+}
