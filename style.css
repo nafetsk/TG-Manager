@@ -103,12 +103,14 @@ h1{
 
 
 .Spalten{
+	text-align: center;
+	font-size: 20px;
+	color: white;
+}
+.Spalten_index{
 	display: flex;
 	justify-content: space-around;
 	font-size: 20px;
 	color: white;
 }
-.nachtrag_formular{
-	display: flex;
-	justify-content: space-around;
-}
+
