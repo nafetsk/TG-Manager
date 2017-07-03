@@ -59,8 +59,10 @@ body {
 	height: 80px;
 	width: 80px;
 }
-.name{
+.registrieren{
 	font-size: 25px;
+	text-decoration: none;
+	color: white;
 }
 
 .hauptseite{
@@ -101,14 +103,19 @@ h1{
     background: rgba(29, 166, 255, 0.76);
     color: white;
 }
-
-
-.Spalten{
+.button-container_2 {
+	text-align: center;
+	margin-top: 100px;
+}
+.button-container_3{
+	margin-top: 100px;
+}
+.spalten{
 	text-align: center;
 	font-size: 20px;
 	color: white;
 }
-.Spalten_index{
+.spalten_index{
 	display: flex;
 	padding: 0 20px;
 	font-size: 20px;
@@ -116,7 +123,7 @@ h1{
 	flex-basis: 25%;
 }
 
-.Spalten_index h2 {
+.spalten_index h2 {
 	flex-basis: 25%;
 	text-align: center;
 }
@@ -127,5 +134,16 @@ h1{
 }
 .datensätze > div {
 	flex-basis: 25%;
+}
+.abschicken{
+	background: transparent;
+	border: solid 2px #2196F3;
+	font-size: 25px;
+	border-radius: 5px;
+	color: #2196F3;
+	padding: 10px 30px;
+	transition: 150ms;
+	margin: auto;
+	text-decoration: none;
 }
 

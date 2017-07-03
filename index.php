@@ -25,14 +25,14 @@
         </nav>
     </div>
     <div class="navbar__element">
-        <span class="name">Stefan Klotz</span>
+        <a class="registrieren" href="Registrieren.php">Registrieren</a>
     </div>
 </div>
 
 <div class="hauptseite">
     <h1>Kontostand:</h1>
 
-    <div class="Spalten_index">
+    <div class="spalten_index">
         <h2 class="Klamotten">Klamotten</h2> <h2 class="Taschengeld">Taschengeld</h2>
         <h2 class="Frisör">Frisoer</h2> <h2 class ="Spargeld">Spargeld</h2>
     </div>
@@ -56,12 +56,6 @@ while ($zeile = $ergebnis->fetch_array()) {
 
     <div class="taschengeld_datenbank">
         <?php
-        //Verbindung zur Datenbank
-        $mysqli = new mysqli("localhost", "root", "stefan", "tg_manager");
-        if ($mysqli->connect_error) {
-            echo "Fehler bei Verbindung:" . mysqli_connect_error();
-            exit();
-        }
         //Abrufen der Datensätze
         $ergebnis = $mysqli->query("Select datum, preis, grund FROM Taschengeld;");
         while ($zeile = $ergebnis->fetch_array()) {
@@ -73,12 +67,6 @@ while ($zeile = $ergebnis->fetch_array()) {
 
     <div class="frisoer_datebank_datenbank">
         <?php
-        //Verbindung zur Datenbank
-        $mysqli = new mysqli("localhost", "root", "stefan", "tg_manager");
-        if ($mysqli->connect_error) {
-            echo "Fehler bei Verbindung:" . mysqli_connect_error();
-            exit();
-        }
         //Abrufen der Datensätze
         $ergebnis = $mysqli->query("Select datum, preis, grund FROM Frisoer;");
         while ($zeile = $ergebnis->fetch_array()) {
@@ -90,12 +78,6 @@ while ($zeile = $ergebnis->fetch_array()) {
 
     <div class="spargeld_datenbank">
         <?php
-        //Verbindung zur Datenbank
-        $mysqli = new mysqli("localhost", "root", "stefan", "tg_manager");
-        if ($mysqli->connect_error) {
-            echo "Fehler bei Verbindung:" . mysqli_connect_error();
-            exit();
-        }
         //Abrufen der Datensätze
         $ergebnis = $mysqli->query("Select datum, preis, grund FROM Spargeld;");
         while ($zeile = $ergebnis->fetch_array()) {

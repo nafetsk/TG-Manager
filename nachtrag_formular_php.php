@@ -25,14 +25,14 @@
         </nav>
     </div>
     <div class="navbar__element">
-        <span class="name">Stefan Klotz</span>
+        <a class="registrieren" href="Registrieren.php">Registrieren</a>
     </div>
 </div>
 
 <div class="hauptseite">
     <h1>Nachtrag</h1>
 
-    <div class="Spalten">
+    <div class="spalten">
         <form action="nachtrag_formular_php.php" method="post" accept-charset="utf-8">
         <div> <h2 class="Klamotten">Wann</h2>
 
@@ -56,7 +56,9 @@
             <input type="radio" name="spalte" value="spargeld"><span>Spargeld</span>
 
         </div>
-            <input class="abschicken" type="submit" value="Abschicken">
+            <div class="button-container_2">
+                <button class="button" type="submit">Nachtragen!</button>
+            </div>
         </form>
 
     </div>
