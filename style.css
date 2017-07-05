@@ -85,7 +85,7 @@ h1{
 
 .button-container{
 	text-align: center;
-	margin-top: 150px;
+	margin-top: 100px;
 
 }
 .button {
@@ -120,11 +120,10 @@ h1{
 	padding: 0 20px;
 	font-size: 20px;
 	color: white;
-	flex-basis: 25%;
+	justify-content: space-between;
 }
 
 .spalten_index h2 {
-	flex-basis: 25%;
 	text-align: center;
 }
 .datensätze{
@@ -169,4 +168,7 @@ h1{
 }
 .link_alle_datensätze:hover{
 	color: rgba(29, 166, 255, 0.76);
+}
+#einnahmen{
+	text-align: center;
 }

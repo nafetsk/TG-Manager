@@ -31,9 +31,35 @@
 
 <div class="hauptseite">
     <h1>Einstellungen</h1>
+    <br>
+    <h2 id="einnahmen">Einnahmen im Monat</h2>
+
+    <div class="spalten">
+        <form action="Einstellungen.php" method="post">
+            <?php
+
+            $mysqli = new mysqli("localhost", "root", "stefan", "tg_manager");
+            if ($mysqli->connect_error) {
+                echo "Fehler bei Verbindung:" . mysqli_connect_error();
+                exit();
+            }
+
+            $ergebnis = $mysqli->query("SELECT kategorie FROM Transaktionen GROUP BY kategorie ORDER BY kategorie;");
+            while ($zeile = $ergebnis->fetch_array()) {
+                echo "{$zeile['kategorie']} <br> <input type='text' name='{$zeile['kategorie']}'> <br> ";
+            }
+            ?>
+            <div class="button-container_2">
+                <button class="button" type="submit">Einstellen</button>
+            </div>
+        </form>
+
+    </div>
 
 </div>
+<?php
 
+?>
 
 </body>
 </html>

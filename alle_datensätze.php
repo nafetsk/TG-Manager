@@ -43,7 +43,8 @@
     <?php
     $ergebnis = $mysqli->query("Select datum, betrag, zweck, kategorie FROM Transaktionen ORDER BY datum DESC;");
     while ($zeile = $ergebnis->fetch_array()) {
-        echo "<strong>{$zeile['betrag']} €</strong>: {$zeile['zweck']} {$zeile['datum']} {$zeile['kategorie']} <br>";
+        $datum = new DateTime($zeile['datum']);
+        echo "<strong>{$zeile['betrag']} €</strong>: {$zeile['zweck']} {$datum->format('d.m.Y')} {$zeile['kategorie']} <br>";
     }
     ?>
     </div>

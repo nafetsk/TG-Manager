@@ -100,6 +100,8 @@ date_default_timezone_set("Europe/Berlin");
 $timestamp = time();
 $datum_automatisch = date("Y.m.d",$timestamp);
 
+$datum1 = new DateTime($_POST['datum']);
+
 if ($datum == "heute"){
     $sql = "INSERT INTO Transaktionen (datum, betrag, zweck, kategorie) VALUES (?, ?, ?, ?)";
     $stmt = $mysqli->prepare($sql);
@@ -110,7 +112,7 @@ else {
 
     $sql = "INSERT INTO Transaktionen (datum, betrag, zweck, kategorie) VALUES (?, ?, ?, ?)";
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param('ssss', $datum, $betrag, $zweck, $kategorie);
+    $stmt->bind_param('ssss', $datum1->format('Y-m-d'), $betrag, $zweck, $kategorie);
     $insertSuccessful = $stmt->execute();
 }
 if (isset($_POST['betrag'])){

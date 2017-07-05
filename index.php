@@ -53,14 +53,10 @@
     </div>
     <div class="spalten_index">
         <?php
-        $ergebnis = $mysqli->query("SELECT kategorie FROM Kategorie ORDER BY id;");
+        $ergebnis = $mysqli->query("SELECT kategorie, SUM(betrag) AS summe FROM Transaktionen GROUP BY kategorie ORDER BY kategorie;");
         while ($zeile = $ergebnis->fetch_array()) {
-            echo "<h2>{$zeile['kategorie']} </h2>";
-     /*       $ergebnis_2 = $mysqli->query("SELECT Sum(betrag) AS summe_kategorie FROM Transaktionen WHERE kategorie =?;");
-            $zeile = $ergebnis_2->fetch_array();
-            bind_param('s',$zeile['kategorie'] );
-            echo "{$zeile['summe_kategorie']}";
-*/
+            echo "<h2>{$zeile['kategorie']} <strong><br> {$zeile['summe']}€ </strong> </h2>";
+
         }
         ?>
     </div>
@@ -69,7 +65,8 @@
         <?php
         $ergebnis = $mysqli->query("Select datum, betrag, zweck, kategorie FROM Transaktionen ORDER BY datum DESC LIMIT 8;");
         while ($zeile = $ergebnis->fetch_array()) {
-            echo "<strong>{$zeile['betrag']} €</strong>: {$zeile['zweck']} {$zeile['datum']} {$zeile['kategorie']} <br>";
+            $datum = new DateTime($zeile['datum']);
+            echo "<strong>{$zeile['betrag']} €</strong>: {$zeile['zweck']} {$datum->format('d.m.Y')} {$zeile['kategorie']} <br>";
         }
         ?>
 
@@ -79,7 +76,9 @@
     </div>
     <div class="button-container">
         <a class="button" href="nachtrag_formular_php.php">Nachtrag</a>
+        <!--
         <a class="button" href="spalten_bearbeiten.php">Spalten bearbeiten</a>
+        -->
     </div>
     </div>
 
