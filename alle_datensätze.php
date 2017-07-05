@@ -30,45 +30,25 @@
 </div>
 
 <div class="hauptseite">
-    <h1>Registrierung</h1>
-    <div class ="spalten">
-    <form action="Registrieren.php" method="post">
-        <h2>Vorname</h2>
-        <input type="text" name="Vorname">
-        <h2>Nachname</h2>
-        <input type="text" name="Name">
-        <h2>E-Mail</h2>
-        <input type="text" name="e_mail">
-        <div class="button-container_3">
-            <button class="button" type="submit">Registrieren</button>
-        </div>
-    </form>
+    <h1>Alle Umbuchungen</h1>
+    <?php
+
+    $mysqli = new mysqli("localhost", "root", "stefan", "tg_manager");
+    if ($mysqli->connect_error) {
+        echo "Fehler bei Verbindung:" . mysqli_connect_error();
+        exit();
+    }
+?>
+    <div class="datensätze">
+    <?php
+    $ergebnis = $mysqli->query("Select datum, betrag, zweck, kategorie FROM Transaktionen ORDER BY datum DESC;");
+    while ($zeile = $ergebnis->fetch_array()) {
+        echo "<strong>{$zeile['betrag']} €</strong>: {$zeile['zweck']} {$zeile['datum']} {$zeile['kategorie']} <br>";
+    }
+    ?>
     </div>
 </div>
-<?php
 
-$mysqli = new mysqli("localhost", "root", "stefan", "tg_manager");
-if ($mysqli->connect_error) {
-    echo "Fehler bei Verbindung:" . mysqli_connect_error();
-    exit();
-}
-$Vorname = $_POST['Vorname'];
-$Name = $_POST['Name'];
-$e_mail = $_POST['e_mail'];
-
-if (isset($_POST['Vorname'])) {
-    $sql = "INSERT INTO Benutzer (Vorname, Name, e_mail) VALUES (?, ?, ?)";
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param('sss', $Vorname, $Name, $e_mail);
-    $insertSuccessful = $stmt->execute();
-
-    header('Location: index.php');
-}
-else{
-
-}
-
-?>
 
 </body>
 </html>

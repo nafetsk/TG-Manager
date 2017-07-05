@@ -30,67 +30,60 @@
 </div>
 
 <div class="hauptseite">
-    <h1>Kontostand:</h1>
-
+    <div>
+        <h1>Kontostand am
+            <?php
+            date_default_timezone_set("am");
+            $timestamp = time();
+            $datum = date("d.m.Y",$timestamp);
+            echo "$datum";
+            ?>
+        </h1>
+    <?php
+    $mysqli = new mysqli("localhost", "root", "stefan", "tg_manager");
+    if ($mysqli->connect_error) {
+        echo "Fehler bei Verbindung:" . mysqli_connect_error();
+        exit();
+    }
+    $ergebnis = $mysqli->query("SELECT SUM(betrag) as summe FROM Transaktionen;");
+    while ($zeile = $ergebnis->fetch_array()) {
+        echo "<h1>{$zeile['summe']} €</h1>";
+    }
+    ?>
+    </div>
     <div class="spalten_index">
-        <h2 class="Klamotten">Klamotten</h2> <h2 class="Taschengeld">Taschengeld</h2>
-        <h2 class="Frisör">Frisoer</h2> <h2 class ="Spargeld">Spargeld</h2>
+        <?php
+        $ergebnis = $mysqli->query("SELECT kategorie FROM Kategorie ORDER BY id;");
+        while ($zeile = $ergebnis->fetch_array()) {
+            echo "<h2>{$zeile['kategorie']} </h2>";
+     /*       $ergebnis_2 = $mysqli->query("SELECT Sum(betrag) AS summe_kategorie FROM Transaktionen WHERE kategorie =?;");
+            $zeile = $ergebnis_2->fetch_array();
+            bind_param('s',$zeile['kategorie'] );
+            echo "{$zeile['summe_kategorie']}";
+*/
+        }
+        ?>
     </div>
     <div class="datensätze">
-    <div class="klamotten_datenbank">
-<?php
-//Verbindung zur Datenbank
-$mysqli = new mysqli("localhost", "root", "stefan", "tg_manager");
-if ($mysqli->connect_error) {
-    echo "Fehler bei Verbindung:" . mysqli_connect_error();
-    exit();
-}
-//Abrufen der Datensätze
-$ergebnis = $mysqli->query("Select datum, preis, grund FROM Klamotten;");
-while ($zeile = $ergebnis->fetch_array()) {
-    echo "<strong>{$zeile['preis']}</strong>: {$zeile['grund']} {$zeile['datum']}
-	<br>";
-}
-?>
-</div>
-
-    <div class="taschengeld_datenbank">
+        <h2>Letzte Umbuchungen</h2>
         <?php
-        //Abrufen der Datensätze
-        $ergebnis = $mysqli->query("Select datum, preis, grund FROM Taschengeld;");
+        $ergebnis = $mysqli->query("Select datum, betrag, zweck, kategorie FROM Transaktionen ORDER BY datum DESC LIMIT 8;");
         while ($zeile = $ergebnis->fetch_array()) {
-            echo "<strong>{$zeile['preis']}</strong>: {$zeile['grund']} {$zeile['Datum']}
-	<br>";
+            echo "<strong>{$zeile['betrag']} €</strong>: {$zeile['zweck']} {$zeile['datum']} {$zeile['kategorie']} <br>";
         }
         ?>
-    </div>
 
-    <div class="frisoer_datebank_datenbank">
-        <?php
-        //Abrufen der Datensätze
-        $ergebnis = $mysqli->query("Select datum, preis, grund FROM Frisoer;");
-        while ($zeile = $ergebnis->fetch_array()) {
-            echo "<strong>{$zeile['preis']}</strong>: {$zeile['grund']} {$zeile['datum']}
-	<br>";
-        }
-        ?>
     </div>
-
-    <div class="spargeld_datenbank">
-        <?php
-        //Abrufen der Datensätze
-        $ergebnis = $mysqli->query("Select datum, preis, grund FROM Spargeld;");
-        while ($zeile = $ergebnis->fetch_array()) {
-            echo "<strong>{$zeile['preis']}</strong>: {$zeile['grund']} {$zeile['datum']}
-	<br>";
-        }
-        ?>
+    <div class="link_alle_datensätze_container">
+    <a class ="link_alle_datensätze" href="alle_datensätze.php">Alle Umbuchungen</a>
     </div>
-    </div>
-
     <div class="button-container">
         <a class="button" href="nachtrag_formular_php.php">Nachtrag</a>
+        <a class="button" href="spalten_bearbeiten.php">Spalten bearbeiten</a>
     </div>
+    </div>
+
+
     </div>
 
 </div>

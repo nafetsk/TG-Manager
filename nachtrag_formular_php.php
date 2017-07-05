@@ -30,30 +30,28 @@
 </div>
 
 <div class="hauptseite">
-    <h1>Nachtrag</h1>
 
-    <div class="spalten">
-        <form action="nachtrag_formular_php.php" method="post" accept-charset="utf-8">
-        <div> <h2 class="Klamotten">Wann</h2>
+<div class="doppel_formular">
+    <div class="formulare">
+        <h1>Nachtrag</h1>
+        <form action="nachtrag_formular_php.php" method="post" >
+        <div> <h2>Wann</h2>
 
                 <input type="text" name="datum" >
 
         </div>
         <div>
-            <h2 class="Taschengeld">Wie viel?</h2>
-            <input type="text" name="preis" >
+            <h2 >Wie viel?</h2>
+            <input type="text" name="betrag" >
         </div>
 
         <div>
-            <h2 class="Frisör">Wofuer?</h2>
-            <input type="text" name="grund" >
+            <h2>Wofuer?</h2>
+            <input type="text" name="zweck" >
         </div>
-        <div> <h2 class ="Spargeld">In welche Spalte?</h2>
+        <div> <h2 >Welche Kategorie?</h2>
 
-            <input type="radio" name="spalte" value="klamotten"><span>Klamotten</span>
-            <input type="radio" name="spalte" value="frisoer"><span>Frisoer</span>
-            <input type="radio" name="spalte" value="taschengeld"><span>Taschengeld</span>
-            <input type="radio" name="spalte" value="spargeld"><span>Spargeld</span>
+            <input type="text" name="kategorie">
 
         </div>
             <div class="button-container_2">
@@ -62,12 +60,29 @@
         </form>
 
     </div>
+<div class="formulare">
+    <h1>Nachtrag Löschen</h1>
+    <form action="nachtrag_formular_php.php" method="post" >
+        <div>
+
+            <h2>Von Wann war der Nachtrag?</h2>
+
+            <input type="text" name="datum_loeschen" >
+
+        </div>
+        <div>
+            <h2 >Wie hoch war der Nachtrag?</h2>
+            <input type="text" name="betrag_loeschen" >
+        </div>
+
+        <div class="button-container_2">
+            <button class="button" type="submit">Nachtrag Löschen!</button>
+        </div>
+    </form>
 </div>
 
-
-
-
-
+</div>
+</div>
 <?php
 
 $mysqli = new mysqli("localhost", "root", "stefan", "tg_manager");
@@ -77,41 +92,42 @@ if ($mysqli->connect_error) {
 }
 
 $datum = $_POST['datum'];
-$preis = $_POST['preis'];
-$grund = $_POST['grund'];
+$betrag = $_POST['betrag'];
+$zweck = $_POST['zweck'];
+$kategorie = $_POST['kategorie'];
 
+date_default_timezone_set("Europe/Berlin");
+$timestamp = time();
+$datum_automatisch = date("Y.m.d",$timestamp);
 
-if ($_POST['spalte'] === "klamotten"){
-    $sql = "INSERT INTO Klamotten (datum, preis, grund) VALUES (?, ?, ?)";
+if ($datum == "heute"){
+    $sql = "INSERT INTO Transaktionen (datum, betrag, zweck, kategorie) VALUES (?, ?, ?, ?)";
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param('sss', $datum, $preis, $grund);
+    $stmt->bind_param('ssss', $datum_automatisch, $betrag, $zweck, $kategorie);
     $insertSuccessful = $stmt->execute();
 }
+else {
 
-else if ($_POST['spalte'] === "frisoer"){
-    $sql = "INSERT INTO Frisoer (datum, preis, grund) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO Transaktionen (datum, betrag, zweck, kategorie) VALUES (?, ?, ?, ?)";
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param('sss', $datum, $preis, $grund);
+    $stmt->bind_param('ssss', $datum, $betrag, $zweck, $kategorie);
     $insertSuccessful = $stmt->execute();
 }
-else if ($_POST['spalte'] === "taschengeld"){
-    $sql = "INSERT INTO Taschengeld (datum, preis, grund) VALUES (?, ?, ?)";
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param('sss', $datum, $preis, $grund);
-    $insertSuccessful = $stmt->execute();
-}
-else if ($_POST['spalte'] === "spargeld"){
-    $sql = "INSERT INTO Spargeld (datum, preis, grund) VALUES (?, ?, ?)";
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param('sss', $datum, $preis, $grund);
-    $insertSuccessful = $stmt->execute();
-}
-
-if(isset($_POST['preis'])){
+if (isset($_POST['betrag'])){
     header('Location: index.php');
     exit;
 }
-
+$datum_loeschen = $_POST['datum_loeschen'];
+$betrag_loeschen = $_POST['betrag_loeschen'];
+$sql = "DELETE FROM Transaktionen WHERE datum =? AND betrag =? ";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("ss",$datum_loeschen, $betrag_loeschen);
+$stmt->execute();
+$stmt->close();
+if (isset($_POST['datum_loeschen'])) {
+    header('Location: index.php');
+    exit;
+}
 ?>
 </body>
 </html>

@@ -85,7 +85,7 @@ h1{
 
 .button-container{
 	text-align: center;
-	margin-top: 350px;
+	margin-top: 150px;
 
 }
 .button {
@@ -128,12 +128,12 @@ h1{
 	text-align: center;
 }
 .datensätze{
-	padding: 0 20px;
+	margin-top: 50px;
 	text-align: center;
-	display: flex;
+	font-size: 25px;
 }
 .datensätze > div {
-	flex-basis: 25%;
+
 }
 .abschicken{
 	background: transparent;
@@ -147,3 +147,26 @@ h1{
 	text-decoration: none;
 }
 
+.doppel_formular{
+	display: flex;
+	color: white;
+	font-size: 20px;
+}
+.formulare{
+	text-align: center;
+	flex-basis: 50%;
+}
+.link_alle_datensätze_container{
+	margin-top: 30px;
+	text-align: center;
+
+
+}
+.link_alle_datensätze{
+	text-decoration: none;
+	color: white;
+	font-size: 20px;
+}
+.link_alle_datensätze:hover{
+	color: rgba(29, 166, 255, 0.76);
+}

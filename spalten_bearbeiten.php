@@ -30,44 +30,49 @@
 </div>
 
 <div class="hauptseite">
-    <h1>Registrierung</h1>
-    <div class ="spalten">
-    <form action="Registrieren.php" method="post">
-        <h2>Vorname</h2>
-        <input type="text" name="Vorname">
-        <h2>Nachname</h2>
-        <input type="text" name="Name">
-        <h2>E-Mail</h2>
-        <input type="text" name="e_mail">
-        <div class="button-container_3">
-            <button class="button" type="submit">Registrieren</button>
-        </div>
+    <div class="spalten">
+    <form action="spalten_bearbeiten.php" method="post">
+        <h1>Spalte hinzufügen</h1>
+        <h2>Name</h2>
+        <input type="text" name="name_spalte">
+        <br>
+        <input type="submit" value="Hinzufügen">
+    </form>
+        <form action="spalten_bearbeiten.php" method="post">
+        <h1>Spalte entfernen</h1>
+        <h2>Name</h2>
+        <input type="text" name="spalte_loeschen">
+            <br>
+            <input type="submit" value="Entfernen">
     </form>
     </div>
 </div>
 <?php
-
 $mysqli = new mysqli("localhost", "root", "stefan", "tg_manager");
 if ($mysqli->connect_error) {
     echo "Fehler bei Verbindung:" . mysqli_connect_error();
     exit();
 }
-$Vorname = $_POST['Vorname'];
-$Name = $_POST['Name'];
-$e_mail = $_POST['e_mail'];
-
-if (isset($_POST['Vorname'])) {
-    $sql = "INSERT INTO Benutzer (Vorname, Name, e_mail) VALUES (?, ?, ?)";
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param('sss', $Vorname, $Name, $e_mail);
-    $insertSuccessful = $stmt->execute();
-
+$name_spalte = $_POST['name_spalte'];
+$sql = "INSERT INTO Kategorie (kategorie) VALUES (?)";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param('s',$name_spalte);
+$insertSuccessful = $stmt->execute();
+if (isset($_POST['name_spalte'])){
     header('Location: index.php');
-}
-else{
-
+    exit;
 }
 
+$spalte_loeschen = $_POST['spalte_loeschen'];
+$sql = "DELETE FROM Kategorie WHERE kategorie =?";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("s", $spalte_loeschen);
+$stmt->execute();
+$stmt->close();
+if (isset($_POST['spalte_loeschen'])) {
+    header('Location: index.php');
+    exit;
+}
 ?>
 
 </body>
