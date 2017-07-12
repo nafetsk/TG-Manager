@@ -19,13 +19,22 @@
                     <a class="nav-main__text" href="Einstellungen.php">Einstellungen</a>
                 </li>
                 <li class="nav-main__items">
-                    <a class="nav-main__text" href="index.php">Uebersicht</a>
+                    <a class="nav-main__text" href="index.php">Übersicht</a>
                 </li>
             </ul>
         </nav>
     </div>
+    <?php
+    session_start();
+    ?>
     <div class="navbar__element">
-        <a class="registrieren" href="Registrieren.php">Registrieren</a>
+        <a class="registrieren" href="abmelden.php">Abmelden</a>
+        &nbsp;
+        <a class="registrieren" href="index.php">
+            <?php
+            echo "{$_SESSION['benutzer']}"
+            ?>
+        </a>
     </div>
 </div>
 
@@ -90,46 +99,50 @@ if ($mysqli->connect_error) {
     echo "Fehler bei Verbindung:" . mysqli_connect_error();
     exit();
 }
-
-$datum = $_POST['datum'];
+$datum_echt = $_POST['datum'];
 $betrag = $_POST['betrag'];
 $zweck = $_POST['zweck'];
 $kategorie = $_POST['kategorie'];
+$benutzer = $_SESSION["benutzer_id"];
 
 date_default_timezone_set("Europe/Berlin");
 $timestamp = time();
-$datum_automatisch = date("Y.m.d",$timestamp);
+$datum_automatisch = date("Y-m-d",$timestamp);
 
-$datum1 = new DateTime($_POST['datum']);
+if ($_POST['datum'] !== "heute"){
+    $datum = new DateTime($_POST['datum']);
+}
 
-if ($datum == "heute"){
-    $sql = "INSERT INTO Transaktionen (datum, betrag, zweck, kategorie) VALUES (?, ?, ?, ?)";
+if ($datum_echt === "heute"){
+    $sql = "INSERT INTO Transaktionen (datum, betrag, zweck, kategorie, benutzer) VALUES (?, ?, ?, ?, ?)";
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param('ssss', $datum_automatisch, $betrag, $zweck, $kategorie);
+    $stmt->bind_param('sssss', $datum_automatisch, $betrag, $zweck, $kategorie, $benutzer);
     $insertSuccessful = $stmt->execute();
 }
 else {
 
-    $sql = "INSERT INTO Transaktionen (datum, betrag, zweck, kategorie) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO Transaktionen (datum, betrag, zweck, kategorie, benutzer) VALUES (?, ?, ?, ?, ?)";
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param('ssss', $datum1->format('Y-m-d'), $betrag, $zweck, $kategorie);
+    $stmt->bind_param('sssss', $datum->format('Y-m-d'), $betrag, $zweck, $kategorie, $benutzer);
     $insertSuccessful = $stmt->execute();
 }
 if (isset($_POST['betrag'])){
     header('Location: index.php');
     exit;
 }
-$datum_loeschen = $_POST['datum_loeschen'];
 $betrag_loeschen = $_POST['betrag_loeschen'];
-$sql = "DELETE FROM Transaktionen WHERE datum =? AND betrag =? ";
+$datum2 = new DateTime($_POST['datum_loeschen']);
+$sql = "DELETE FROM Transaktionen WHERE datum =? AND betrag =? AND Benutzer = \"$benutzer\" ";
 $stmt = $mysqli->prepare($sql);
-$stmt->bind_param("ss",$datum_loeschen, $betrag_loeschen);
+$stmt->bind_param("ss",$datum2->format('Y-m-d'), $betrag_loeschen);
 $stmt->execute();
 $stmt->close();
 if (isset($_POST['datum_loeschen'])) {
     header('Location: index.php');
     exit;
 }
+echo " {$_SESSION['benutezr']}";
+
 ?>
 </body>
 </html>

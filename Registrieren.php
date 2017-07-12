@@ -14,17 +14,13 @@
     </div>
     <div class="navbar__element">
         <nav class="nav-main">
-            <ul class="nav-main__list">
-                <li class="nav-main__items">
-                    <a class="nav-main__text" href="Einstellungen.php">Einstellungen</a>
-                </li>
-                <li class="nav-main__items">
-                    <a class="nav-main__text" href="index.php">Uebersicht</a>
-                </li>
-            </ul>
+
         </nav>
     </div>
+
     <div class="navbar__element">
+        <a class="registrieren" href="anmelden.php">Anmelden</a>
+        &nbsp;
         <a class="registrieren" href="Registrieren.php">Registrieren</a>
     </div>
 </div>
@@ -39,6 +35,8 @@
         <input type="text" name="Name">
         <h2>E-Mail</h2>
         <input type="text" name="e_mail">
+        <h2>Passwort</h2>
+        <input type="text" name="passwort">
         <div class="button-container_3">
             <button class="button" type="submit">Registrieren</button>
         </div>
@@ -55,14 +53,15 @@ if ($mysqli->connect_error) {
 $Vorname = $_POST['Vorname'];
 $Name = $_POST['Name'];
 $e_mail = $_POST['e_mail'];
+$passwort = $_POST['passwort'];
 
 if (isset($_POST['Vorname'])) {
-    $sql = "INSERT INTO Benutzer (Vorname, Name, e_mail) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO Benutzer (Vorname, Name, e_mail, passwort) VALUES (?, ?, ?, ?)";
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param('sss', $Vorname, $Name, $e_mail);
+    $stmt->bind_param('ssss', $Vorname, $Name, $e_mail, $passwort);
     $insertSuccessful = $stmt->execute();
 
-    header('Location: index.php');
+    header('Location: anmelden.php');
 }
 else{
 

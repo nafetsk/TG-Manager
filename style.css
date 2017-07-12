@@ -64,6 +64,10 @@ body {
 	text-decoration: none;
 	color: white;
 }
+.registrieren:hover {
+	color: #2196F3;
+	transition: 150ms;
+}
 
 .hauptseite{
 	background-color: rgba(0,0,0,0.5);
@@ -126,6 +130,10 @@ h1{
 .spalten_index h2 {
 	text-align: center;
 }
+.spalten_index h1 {
+	margin: auto;
+	color: red;
+}
 .datensätze{
 	margin-top: 50px;
 	text-align: center;
@@ -171,4 +179,42 @@ h1{
 }
 #einnahmen{
 	text-align: center;
+}
+.haupt_link_container{
+	text-align: center;
+}
+.haupt_link{
+	text-decoration: none;
+	color: white;
+	font-size: 20px;
+}
+#keine_umbuchungen{
+	text-align: center;
+}
+.info_text{
+	text-align: center;
+	margin-top: 150px;
+	font-size: 25px;
+}
+.aktuelle_abos{
+	margin-top: 80px;
+
+}
+.aktuelle_abos span{
+	font-size: 25px;
+}
+.blaettern{
+	text-align: center;
+	margin-top: 50px;
+}
+.blaettern a{
+	text-decoration: none;
+	color: white;
+	font-size: 25px;
+
+
+}
+.blaettern a:hover{
+	color: rgba(29, 166, 255, 0.76);
+	transition: 150ms;
 }
