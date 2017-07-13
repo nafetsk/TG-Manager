@@ -63,7 +63,7 @@ while ($zeile = $ergebnis->fetch_array()) {
     $betrag = $zeile['betrag'];
     $intervall = $zeile['intervall'];
     $letzteBuchung = $zeile['datum'];
-    if ($zeile['betrag']) {
+    if ($zeile['kategorie']) {
 
         $regel = finde_regel($intervall);
 

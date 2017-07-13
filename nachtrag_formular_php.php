@@ -1,41 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>TG Manager</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <?php
+    include ('head.php');
+    session_start();
+    if (!$_SESSION['benutzer']){
+        header('Location: index.php');
+    }
+    ?>
 </head>
 <body>
 <div class="navbar">
     <div class="navbar__element">
-        <img class="logo" src="images/Logo2.png">
         <span class="tg_manager">TG Manager</span>
     </div>
     <div class="navbar__element">
         <nav class="nav-main">
             <ul class="nav-main__list">
                 <li class="nav-main__items">
-                    <a class="nav-main__text" href="Einstellungen.php">Einstellungen</a>
+                    <a class="button" href="Einstellungen.php">Einstellungen</a>
                 </li>
                 <li class="nav-main__items">
-                    <a class="nav-main__text" href="index.php">Übersicht</a>
+                    <a class="button" href="index.php">Übersicht</a>
                 </li>
             </ul>
         </nav>
     </div>
-    <?php
-    session_start();
-    ?>
-    <div class="navbar__element">
-        <a class="registrieren" href="abmelden.php">Abmelden</a>
+    <div class="navbar__element_2">
+        <a class="button" href="abmelden.php">Abmelden</a>
         &nbsp;
-        <a class="registrieren" href="index.php">
+        <a class="account" href="index.php">
             <?php
             echo "{$_SESSION['benutzer']}"
-            ?>
-        </a>
+            ?> </a>
     </div>
+
 </div>
 
 <div class="hauptseite">
@@ -144,5 +143,8 @@ if (isset($_POST['datum_loeschen'])) {
 echo " {$_SESSION['benutezr']}";
 
 ?>
+<div class="impressum">
+    <a href="impressum.php">Impressum</a>
+</div>
 </body>
 </html>

@@ -3,10 +3,25 @@
 }
 
 body {
+	min-height: 100vh;
 	margin:0;
 	padding:0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
 	font-family: Josefin Sans, sans-serif;
-	background-image: url(images/money.jpg);
+	/*background-image: url(images/money.jpg);*/
+	/*background-repeat: no-repeat;*/
+	/*background-size: cover;*/
+	background: url(images/congruent_pentagon.png);
+}
+.hauptseite {
+	margin: 20px;
+	margin-top: 110px;
+	flex-grow: 2;
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 10px;
+	color: white;
 }
 
 /* navbar */
@@ -19,13 +34,12 @@ body {
 	top: 0;
 	padding: 5px 10px;
 	display: flex;
+	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 }
 
 /* nav main */
-.nav-main {}
-
 .nav-main__list {
 	padding: 0;
 	margin: 0;
@@ -34,79 +48,60 @@ body {
 	align-items: center;
 }
 
-.nav-main__text {
+.nav-main__list a {
 	padding: 5px;
-	display: inline-block;
-	text-decoration: none;
-	color: rgb(100, 112, 132);
+	margin: 15px;
 }
 
-.nav-main__text:hover{
-	color: rgba(29, 166, 255, 0.76);
-	transition: 150ms;
+.navbar__element_2 a {
+	padding: 5px;
+}
 
-
-}
-.navbar__element{
-	display:flex;
-	align-items: : center;
-}
-.tg_manager{
- line-height: 80px;
-}
-.logo{
-	float: left;
-	height: 80px;
-	width: 80px;
-}
-.registrieren{
+.account {
 	font-size: 25px;
 	text-decoration: none;
 	color: white;
 }
-.registrieren:hover {
-	color: #2196F3;
-	transition: 150ms;
-}
 
-.hauptseite{
-	background-color: rgba(0,0,0,0.5);
-	max-width: 90%;
-	height: 1000px;
-	margin-right: auto;
-	margin-left: auto;
-	margin-top: 150px;
-	border-radius: 10px;
+.tg_manager {
+	display: inline-block;
+	line-height: 80px;
+	font-family: Luckiest Guy;
+	color: #F8FCFB;
+	font-size: 40px;
+}
+.button-container{
+	text-align: center;
+	margin-top: 100px;
+	margin-bottom: 50px;
+
+}
+.button {
+	border: solid 2px #2196F3;
+	font-size: 25px;
+	border-radius: 5px;
 	color: white;
-
+	padding: 10px 30px;
+	transition: 150ms;
+	margin: auto;
+	text-decoration: none;
+	background: rgba(29, 166, 255, 0.76);
 }
+.button:hover {
+	background: transparent;
+	color: white;
+}
+.info_text{
+	text-align: center;
+	margin-top: 150px;
+	font-size: 25px;
+}
+
 h1{
 	text-align: center;
 	color:white;
 }
 
-
-
-.button-container{
-	text-align: center;
-	margin-top: 100px;
-
-}
-.button {
-    background: transparent;
-    border: solid 2px #2196F3;
-    font-size: 25px;
-    border-radius: 5px;
-    color: #2196F3;
-    padding: 10px 30px;
-    transition: 150ms;
-    margin: auto;
-    text-decoration: none;
-    }
- .button:hover {
-    background: rgba(29, 166, 255, 0.76);
-    color: white;
-}
 .button-container_2 {
 	text-align: center;
 	margin-top: 100px;
@@ -127,12 +122,12 @@ h1{
 	justify-content: space-between;
 }
 
-.spalten_index h2 {
+.spalten_index_h2 {
 	text-align: center;
 }
 .spalten_index h1 {
 	margin: auto;
-	color: red;
+	color: #FC345C;
 }
 .datensätze{
 	margin-top: 50px;
@@ -177,9 +172,6 @@ h1{
 .link_alle_datensätze:hover{
 	color: rgba(29, 166, 255, 0.76);
 }
-#einnahmen{
-	text-align: center;
-}
 .haupt_link_container{
 	text-align: center;
 }
@@ -191,11 +183,7 @@ h1{
 #keine_umbuchungen{
 	text-align: center;
 }
-.info_text{
-	text-align: center;
-	margin-top: 150px;
-	font-size: 25px;
-}
+
 .aktuelle_abos{
 	margin-top: 80px;
 
@@ -217,4 +205,132 @@ h1{
 .blaettern a:hover{
 	color: rgba(29, 166, 255, 0.76);
 	transition: 150ms;
+}
+.button_wilkommen {
+	border: solid 2px #2196F3;
+	font-size: 20px;
+	border-radius: 5px;
+	color: white;
+	padding: 10px 30px;
+	transition: 150ms;
+	text-decoration: none;
+	background: rgba(29, 166, 255, 0.76);
+
+}
+.button_wilkommen:hover {
+	background: transparent;
+	color: white;
+}
+.impressum {
+	text-align: center;
+	text-decoration: none;
+	color: white;
+	margin-bottom: 10px;
+}
+.impressum a {
+	text-decoration: none;
+	color: black;
+	font-size: 25px;
+}
+.impressum_text {
+	text-align: center;
+	font-size: 25px;
+}
+.einnahmen {
+	text-align: center;
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+
+/*Handy Sicht*/
+
+
+@media (max-width: 768px) {
+	.hauptseite {
+		margin-top: 174px;
+	}
+	.navbar{
+		flex-direction: column;
+		position: absolute;
+	}
+	.nav-main__list a {
+		padding: 5px;
+		margin: 15px;
+	}
+	.navbar__element {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.navbar__element_2 {
+		margin-top: 20px;
+		margin-bottom: 10px;
+	}
+
+	.navbar__element_2 a {
+		padding: 5px;
+	}
+
+	.account {
+		font-size: 25px;
+		text-decoration: none;
+		color: white;
+	}
+
+	.tg_manager {
+		display: inline-block;
+		line-height: 25px;
+		font-family: Luckiest Guy;
+		color: #F8FCFB;
+		font-size: 40px;
+		margin-bottom: 20px;
+	}
+	.button-container {
+		display: flex;
+		flex-direction: column;
+		padding: 10px 15px;
+		margin-top: 30px;
+	}
+	.button{
+		margin-bottom: 20px;
+	}
+	.button_wilkommen {
+		border: solid 2px #2196F3;
+		font-size: 20px;
+		border-radius: 5px;
+		color: white;
+		padding: 10px 30px;
+		transition: 150ms;
+		text-decoration: none;
+		background: rgba(29, 166, 255, 0.76);
+		margin : 20px 5px;
+
+	}
+	.button_wilkommen:hover {
+		background: transparent;
+		color: white;
+	}
+	.info_text{
+		text-align: center;
+		margin-top: 50px;
+		font-size: 25px;
+	}
+	.doppel_formular {
+		display: flex;
+		flex-direction: column;
+	}
+	.spalten_index{
+		flex-wrap: wrap;
+	}
+	.spalten_index_h2{
+		max-width: 40%;
+	}
+	.button-container_2 {
+		text-align: center;
+		margin-top: 40px;
+	}
+	.aktuelle_abos {
+		margin-top: 20px;
+	}
+
 }

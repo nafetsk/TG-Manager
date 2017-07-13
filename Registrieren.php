@@ -1,28 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>TG Manager</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <?php
+    include ('head.php');
+    ?>
 </head>
 <body>
 <div class="navbar">
     <div class="navbar__element">
-        <img class="logo" src="images/Logo2.png">
         <span class="tg_manager">TG Manager</span>
     </div>
-    <div class="navbar__element">
-        <nav class="nav-main">
-
-        </nav>
+        <div class="navbar__element">
+            <a class="button_wilkommen" href="anmelden.php">Anmelden</a>
+            <a class="button_wilkommen" href="Registrieren.php">Registrieren</a>
     </div>
 
-    <div class="navbar__element">
-        <a class="registrieren" href="anmelden.php">Anmelden</a>
-        &nbsp;
-        <a class="registrieren" href="Registrieren.php">Registrieren</a>
-    </div>
 </div>
 
 <div class="hauptseite">
@@ -68,6 +60,8 @@ else{
 }
 
 ?>
-
+<div class="impressum">
+    <a href="impressum.php">Impressum</a>
+</div>
 </body>
 </html>
